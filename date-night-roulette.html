@@ -17,9 +17,29 @@
       <option value="chill">Chill</option>
       <option value="tasty">Tasty</option>
     </select>
+    <input type="text" id="dateInput" placeholder="Add Your Own Date!" />
+    <input type="text" id="vibechoice" placeholder="What's the vibe?" />
+    <button onclick="addDateIdea()">Get Text</button>
     <p id="idea"></p>
   </body>
   <script>
+    async function addDateIdea() {
+      const idea = document.getElementById("dateInput").value;
+      const vibe = document.getElementById("vibechoice").value;
+
+      const response = await fetch(
+        `http://localhost:3000/add-date?vibe=${vibe}&date=${idea}`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ idea, vibe }),
+        }
+      );
+
+      const data = await response.json();
+      console.log(data);
+    }
+
     async function getRandomDate() {
       const vibe = document.getElementById("vibe-select").value;
 
