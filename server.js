@@ -19,8 +19,9 @@ app.get("/random-date", (req, res) => {
   const { vibe } = req.query;
   let filteredIdeas = dateIdeas;
 
-  if (vibe != "all") {
+  if (vibe) {
     filteredIdeas = dateIdeas.filter((d) => d.vibe === vibe);
+    console.log(filteredIdeas);
   }
 
   if (filteredIdeas.length === 0) {
@@ -32,8 +33,15 @@ app.get("/random-date", (req, res) => {
   res.json(randomIdea);
 });
 
+app.post("/add-date", (req, res) => {
+  console.log(req);
+  const { vibe, idea } = req.body;
+  dateIdeas.push({ idea, vibe });
+  res.json(dateIdeas);
+});
+
 app.get("/", (req, res) => {
-  res.json("test?");
+  res.json({ message: "test?" });
 });
 
 app.listen(3000, () => console.log("Server running on port 3000"));

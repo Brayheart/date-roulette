@@ -2,25 +2,62 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- <link rel="icon" type="image/svg+xml" href="/vite.svg" /> -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Date Night Roulette</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <button onclick="getRandomDate()">Generate Random Date</button>
-    <label for="vibe-select">Choose a Vibe:</label>
-    <select name="vibes" id="vibe-select">
-      <option value="">Please Choose an Option</option>
-      <option value="all">Any Vibe</option>
-      <option value="adventurous">Adventurous</option>
-      <option value="cozy">Cozy</option>
-      <option value="chill">Chill</option>
-      <option value="tasty">Tasty</option>
-    </select>
-    <input type="text" id="dateInput" placeholder="Add Your Own Date!" />
-    <input type="text" id="vibechoice" placeholder="What's the vibe?" />
-    <button onclick="addDateIdea()">Get Text</button>
-    <p id="idea"></p>
+  <body class="h-screen flex justify-center items-center bg-gray-100">
+    <div
+      class="flex flex-col items-center gap-4 p-4 bg-gray-100 rounded-lg shadow-md max-w-md mx-auto"
+    >
+      <button
+        onclick="getRandomDate()"
+        class="px-4 py-2 w-full bg-blue-500 text-white rounded-md hover:bg-blue-600"
+      >
+        Generate Random Date
+      </button>
+
+      <div class="flex flex-col items-center gap-2 w-full">
+        <label for="vibe-select" class="text-sm font-semibold"
+          >Choose a Vibe:</label
+        >
+        <select
+          name="vibes"
+          id="vibe-select"
+          class="w-full p-2 border border-gray-300 rounded-md"
+        >
+          <option value="">Please Choose an Option</option>
+          <option value="all">Any Vibe</option>
+          <option value="adventurous">Adventurous</option>
+          <option value="cozy">Cozy</option>
+          <option value="chill">Chill</option>
+          <option value="tasty">Tasty</option>
+        </select>
+      </div>
+
+      <div class="flex flex-col items-center gap-2 w-full">
+        <input
+          type="text"
+          id="dateInput"
+          placeholder="Add Your Own Date!"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+        />
+        <input
+          type="text"
+          id="vibechoice"
+          placeholder="What's the vibe?"
+          class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-400"
+        />
+        <button
+          onclick="addDateIdea()"
+          class="px-4 py-2 mt-5 w-80 bg-green-500 text-white rounded-md hover:bg-green-600"
+        >
+          Add Date
+        </button>
+      </div>
+
+      <p id="idea" class="text-lg font-semibold text-gray-800 mt-4"></p>
+    </div>
   </body>
   <script>
     async function addDateIdea() {
@@ -28,7 +65,7 @@
       const vibe = document.getElementById("vibechoice").value;
 
       const response = await fetch(
-        `http://localhost:3000/add-date?vibe=${vibe}&date=${idea}`,
+        `http://localhost:3000/add-date?vibe=${vibe}&idea=${idea}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -56,5 +93,16 @@
         document.getElementById("idea").innerText = "Something went wrong!";
       }
     }
+
+    async function getDates() {
+      try {
+        const response = await fetch(`http://localhost:3000/`);
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error("Error :", error);
+      }
+    }
+    getDates();
   </script>
 </html>
