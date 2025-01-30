@@ -1,0 +1,64 @@
+<body class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-50 p-8">
+  <div class="max-w-md mx-auto bg-white rounded-xl shadow-md p-6 space-y-6">
+    <h2 class="text-2xl font-semibold text-gray-800 mb-4">
+      Date Night Generator
+    </h2>
+
+    <button
+      onclick="getRandomDate()"
+      class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 transition-colors duration-200 font-medium"
+    >
+      Generate Random Date
+    </button>
+
+    <div class="space-y-2">
+      <label for="vibe-select" class="block text-sm font-medium text-gray-700"
+        >Choose a Vibe:</label
+      >
+      <select
+        name="vibes"
+        id="vibe-select"
+        class="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500"
+      >
+        <option value="">Please Choose an Option</option>
+        <option value="all">Any Vibe</option>
+        <option value="adventurous">Adventurous</option>
+        <option value="cozy">Cozy</option>
+        <option value="chill">Chill</option>
+        <option value="tasty">Tasty</option>
+      </select>
+    </div>
+
+    <div class="space-y-4">
+      <div>
+        <input
+          type="text"
+          id="dateInput"
+          placeholder="Add Your Own Date!"
+          class="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder-gray-400"
+        />
+      </div>
+
+      <div>
+        <input
+          type="text"
+          id="vibechoice"
+          placeholder="What's the vibe?"
+          class="w-full rounded-lg border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 placeholder-gray-400"
+        />
+      </div>
+
+      <button
+        onclick="addDateIdea()"
+        class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors duration-200 font-medium"
+      >
+        Add Date
+      </button>
+    </div>
+
+    <p
+      id="idea"
+      class="mt-4 p-4 bg-gray-50 rounded-lg text-gray-700 min-h-[60px]"
+    ></p>
+  </div>
+</body>
