@@ -1,9 +1,9 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import DateNightGenerator from "./App.tsx";
+import DateNightGenerator from "./App.jsx";
 import "./index.css";
 
-createRoot(document.getElementById("root")!).render(
+createRoot(document.getElementById("root")).render(
   <StrictMode>
     <DateNightGenerator />
   </StrictMode>

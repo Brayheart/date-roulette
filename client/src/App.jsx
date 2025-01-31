@@ -1,42 +1,14 @@
 import React, { useState } from "react";
 
-interface DateIdea {
-  activity: string;
-  vibe: string;
-}
-
-const DateNightGenerator: React.FC = () => {
-  const [currentIdea, setCurrentIdea] = useState<string>("");
-  const [dateInput, setDateInput] = useState<string>("");
-  const [vibeInput, setVibeInput] = useState<string>("");
-  const [selectedVibe, setSelectedVibe] = useState<string>("");
-
-  const [dateIdeas] = useState<DateIdea[]>([
-    { activity: "Picnic in the park", vibe: "chill" },
-    { activity: "Rock climbing", vibe: "adventurous" },
-    { activity: "Movie marathon", vibe: "cozy" },
-    { activity: "Cooking class", vibe: "tasty" },
-  ]);
+const DateNightGenerator = () => {
+  // TODO: Implement your date ideas array
 
   const getRandomDate = () => {
-    const filteredIdeas =
-      selectedVibe && selectedVibe !== "all"
-        ? dateIdeas.filter((idea) => idea.vibe === selectedVibe)
-        : dateIdeas;
-
-    if (filteredIdeas.length > 0) {
-      const randomIdea =
-        filteredIdeas[Math.floor(Math.random() * filteredIdeas.length)];
-      setCurrentIdea(randomIdea.activity);
-    }
+    // TODO: Implement random date selection logic
   };
 
   const addDateIdea = () => {
-    if (dateInput && vibeInput) {
-      dateIdeas.push({ activity: dateInput, vibe: vibeInput });
-      setDateInput("");
-      setVibeInput("");
-    }
+    // TODO: Implement adding new date idea logic
   };
 
   return (
@@ -46,6 +18,13 @@ const DateNightGenerator: React.FC = () => {
           <h2 className="text-xl font-semibold text-gray-900">
             Date Night Generator
           </h2>
+
+          <button
+            onClick={getRandomDate}
+            className="w-full bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors duration-150 font-medium"
+          >
+            Generate Random Date
+          </button>
 
           <div className="space-y-2">
             <label
@@ -109,12 +88,6 @@ const DateNightGenerator: React.FC = () => {
               className="w-full bg-gray-800 text-white px-4 py-2 rounded-md hover:bg-gray-900 transition-colors duration-150 font-medium"
             >
               Add Date
-            </button>
-            <button
-              onClick={getRandomDate}
-              className="w-full bg-purple-600 text-white px-4 py-2 rounded-md hover:bg-purple-700 transition-colors duration-150 font-medium"
-            >
-              Generate Random Date
             </button>
           </div>
 
